@@ -1,0 +1,6 @@
+@LendIT_HostAddress = http://localhost:5070
+
+GET {{LendIT_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
