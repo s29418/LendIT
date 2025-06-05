@@ -25,7 +25,6 @@
       <Folder Include="Configurations\" />
       <Folder Include="Controllers\" />
       <Folder Include="DTOs\" />
-      <Folder Include="Models\ValueObjects\" />
       <Folder Include="Services\" />
     </ItemGroup>
 
