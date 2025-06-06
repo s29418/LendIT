@@ -3,5 +3,6 @@
 public enum StatusSprzetu
 {
     Dostepny,
-    Wypozyczony
+    Wypozyczony,
+    Niedostepny,
 }

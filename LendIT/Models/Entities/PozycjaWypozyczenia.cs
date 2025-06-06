@@ -6,20 +6,32 @@ public class PozycjaWypozyczenia
 {
     [Key]
     [Required]
-    private int Id { get; set; }
+    public int Id { get; set; }
 
     [Required]
-    private int Ilosc { get; set; }
+    public int Ilosc { get; set; }
 
     [Required]
-    private Sprzet Sprzet { get; set; }
+    public Sprzet Sprzet { get; set; }
 
     [Required]
-    private int SprzetId { get; set; }
+    public int SprzetId { get; set; }
 
     [Required]
-    private Wypozyczenie Wypozyczenie { get; set; }
+    public Wypozyczenie Wypozyczenie { get; set; }
 
     [Required]
-    private int WypozyczenieId { get; set; }
+    public int WypozyczenieId { get; set; }
+    
+    public PozycjaWypozyczenia() { } 
+    
+    public PozycjaWypozyczenia(Sprzet sprzet, int ilosc, Wypozyczenie wypozyczenie)
+    {
+        Sprzet = sprzet;
+        Ilosc = ilosc;
+        Wypozyczenie = wypozyczenie;
+    }
+    
+    
+    
 }

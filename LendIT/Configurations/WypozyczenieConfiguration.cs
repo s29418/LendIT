@@ -11,7 +11,11 @@ public class WypozyczenieConfiguration : IEntityTypeConfiguration<Wypozyczenie>
         builder.HasKey("Id");
 
         builder.Property<DateTime>("DataWypozyczenia").IsRequired();
-        builder.Property<int>("Status").IsRequired(); // enum
+        builder.Property<DateTime>("DataZakonczenia").IsRequired();
+        builder.Property("Status")
+            .HasConversion<int>()
+            .IsRequired();
+
 
         builder.Ignore("CalkowityKoszt");
 
@@ -25,9 +29,9 @@ public class WypozyczenieConfiguration : IEntityTypeConfiguration<Wypozyczenie>
             .HasForeignKey("KlientId")
             .OnDelete(DeleteBehavior.Restrict);
 
-        builder.HasOne(typeof(Platnosc), "Platnosc")
-            .WithOne("Wypozyczenie")
-            .HasForeignKey("WypozyczenieId")
-            .OnDelete(DeleteBehavior.Cascade);
+        // builder.HasOne(typeof(Platnosc), "Platnosc")
+        //     .WithOne("Wypozyczenie")
+        //     .HasForeignKey("WypozyczenieId")
+        //     .OnDelete(DeleteBehavior.Cascade);
     }
 }

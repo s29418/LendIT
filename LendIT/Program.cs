@@ -1,4 +1,5 @@
 using LendIT.Data;
+using LendIT.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,9 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<ISprzetService, SprzetService>();
+builder.Services.AddScoped<IKategoriaService, KategoriaService>();
 
 var app = builder.Build();
 

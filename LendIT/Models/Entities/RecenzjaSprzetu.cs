@@ -6,20 +6,20 @@ public class RecenzjaSprzetu
 {
     [Key]
     [Required]
-    private int Id { get; set; }
+    public int Id { get; set; }
 
     [Required]
     [Range(1, 5)]
-    private int Ocena { get; set; }
+    public int Ocena { get; set; }
 
-    private string? Komentarz { get; set; }
-
-    [Required]
-    private DateTime DataDodania { get; set; }
+    public string? Komentarz { get; set; }
 
     [Required]
-    private Sprzet Sprzet { get; set; }
+    public DateTime DataDodania { get; set; }
 
     [Required]
-    private int SprzetId { get; set; }
+    public Sprzet Sprzet { get; set; }
+
+    [Required]
+    public int SprzetId { get; set; }
 }

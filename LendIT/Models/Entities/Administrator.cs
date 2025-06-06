@@ -1,39 +1,65 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using LendIT.Models.Enums;
+using LendIT.Models.ValueObjects;
 
 namespace LendIT.Models.Entities;
 
 public class Administrator : Uzytkownik
 {
     [Required]
-    private string PoziomDostepu { get; set; }
+    public string PoziomDostepu { get; set; }
 
     public override void ZarzadzajKontem(string[] noweDane)
     {
-        throw new NotImplementedException();
+    //     if (noweDane.Length >= 2)
+    //     {
+    //         this.Imie = noweDane[0];
+    //         this.Nazwisko = noweDane[1];
+    //         
+    //     }
     }
 
-    public void DodajSprzet(Sprzet sprzet)
+    public Sprzet DodajSprzet(string nazwa, string opis, decimal cena, decimal kaucja, StatusSprzetu status, Wymiary wymiary, List<KategoriaSprzetu> kategorie, List<string> zdjeciaUrl)
     {
-        throw new NotImplementedException();
+        var sprzet = new Sprzet
+        {
+            Nazwa = nazwa,
+            Opis = opis,
+            Cena = cena,
+            Kaucja = kaucja,
+            Status = status,
+            Wymiary = wymiary,
+            Kategorie = kategorie,
+            Zdjecia = zdjeciaUrl.Select(url => new ZdjecieSprzetu { Url = url }).ToList()
+        };
+
+        return sprzet;
     }
 
-    public void EdytujSprzet(Sprzet sprzet, string[] noweDane)
+    public void EdytujSprzet(Sprzet sprzet, string nazwa, string opis, decimal cena, decimal kaucja)
     {
-        throw new NotImplementedException();
+        sprzet.Nazwa = nazwa;
+        sprzet.Opis = opis;
+        sprzet.Cena = cena;
+        sprzet.Kaucja = kaucja;
     }
 
     public void UsunSprzet(Sprzet sprzet)
     {
-        throw new NotImplementedException();
+        sprzet.Status = StatusSprzetu.Niedostepny; 
     }
 
-    public void PotwierdzZwrot(Zwrot zwrot)
+    public KategoriaSprzetu DodajNowaKategorie(string nazwa)
     {
-        throw new NotImplementedException();
+        return new KategoriaSprzetu
+        {
+            Nazwa = nazwa
+        };
     }
 
-    public void DodajNowaKategorie(string nazwa)
-    {
-        throw new NotImplementedException();
-    }
+    // public void PotwierdzZwrot(Zwrot zwrot)
+    // {
+    //     zwrot.CzyPrzetworzony = true;
+    //     zwrot.DataPrzetworzenia = DateTime.Now;
+    // }
 }

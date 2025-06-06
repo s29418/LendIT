@@ -16,7 +16,7 @@ public class ZwrotConfiguration : IEntityTypeConfiguration<Zwrot>
 
         builder.HasOne(typeof(Wypozyczenie), "Wypozyczenie")
             .WithOne()
-            .HasForeignKey("WypozyczenieId")
+            .HasForeignKey(typeof(Zwrot), "WypozyczenieId")
             .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasOne(typeof(Adres), "Adres")
@@ -26,7 +26,7 @@ public class ZwrotConfiguration : IEntityTypeConfiguration<Zwrot>
 
         builder.HasOne(typeof(EtykietaZwrotna), "EtykietaZwrotna")
             .WithOne("Zwrot")
-            .HasForeignKey("ZwrotId")
+            .HasForeignKey(typeof(Zwrot),"ZwrotId")
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

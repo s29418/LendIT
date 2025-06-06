@@ -16,5 +16,10 @@ public class KoszykConfiguration : IEntityTypeConfiguration<Koszyk>
             .WithOne("Koszyk")
             .HasForeignKey("KoszykId")
             .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.HasOne(typeof(Klient), "Klient")
+            .WithOne("Koszyk")
+            .HasForeignKey(typeof(Koszyk), "KlientId")
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

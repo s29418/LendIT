@@ -16,12 +16,14 @@ public class KlientConfiguration : IEntityTypeConfiguration<Klient>
         builder.Property<string>("Haslo").IsRequired();
         builder.Property<string>("NrTelefonu").IsRequired();
         
-        builder.HasOne(typeof(Koszyk), "Koszyk")
+
+        builder.HasMany(typeof(Adres), "Adresy")
             .WithOne("Klient")
             .HasForeignKey("KlientId")
             .OnDelete(DeleteBehavior.Cascade);
-
-        builder.HasMany(typeof(Adres), "Adresy")
+        
+        builder
+            .HasMany(typeof(Wypozyczenie), "Wypozyczenia")
             .WithOne("Klient")
             .HasForeignKey("KlientId")
             .OnDelete(DeleteBehavior.Cascade);

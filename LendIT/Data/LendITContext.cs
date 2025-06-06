@@ -10,20 +10,20 @@ public class LendITContext : DbContext
     {
     }
     
-    public DbSet<Sprzet> Sprzety => Set<Sprzet>();
-    public DbSet<Klient> Klienci => Set<Klient>();
-    public DbSet<Administrator> Administratorzy => Set<Administrator>();
-    public DbSet<Adres> Adresy => Set<Adres>();
-    public DbSet<KategoriaSprzetu> KategorieSprzetu => Set<KategoriaSprzetu>();
-    public DbSet<ZdjecieSprzetu> ZdjeciaSprzetu => Set<ZdjecieSprzetu>();
+    public DbSet<Sprzet> Sprzet => Set<Sprzet>();
+    public DbSet<Klient> Klient => Set<Klient>();
+    public DbSet<Administrator> Administrator => Set<Administrator>();
+    public DbSet<Adres> Adres => Set<Adres>();
+    public DbSet<KategoriaSprzetu> KategoriaSprzetu => Set<KategoriaSprzetu>();
+    public DbSet<ZdjecieSprzetu> ZdjecieSprzetu => Set<ZdjecieSprzetu>();
     public DbSet<Wypozyczenie> Wypozyczenia => Set<Wypozyczenie>();
-    public DbSet<PozycjaWypozyczenia> PozycjeWypozyczen => Set<PozycjaWypozyczenia>();
-    public DbSet<Platnosc> Platnosci => Set<Platnosc>();
-    public DbSet<Koszyk> Koszyki => Set<Koszyk>();
-    public DbSet<PozycjaKoszyka> PozycjeKoszyka => Set<PozycjaKoszyka>();
-    public DbSet<Zwrot> Zwroty => Set<Zwrot>();
-    public DbSet<EtykietaZwrotna> EtykietyZwrotne => Set<EtykietaZwrotna>();
-    public DbSet<RecenzjaSprzetu> RecenzjeSprzetu => Set<RecenzjaSprzetu>();
+    public DbSet<PozycjaWypozyczenia> PozycjaWypozyczenia => Set<PozycjaWypozyczenia>();
+    public DbSet<Platnosc> Platnosc => Set<Platnosc>();
+    public DbSet<Koszyk> Koszyk => Set<Koszyk>();
+    public DbSet<PozycjaKoszyka> PozycjaKoszyka => Set<PozycjaKoszyka>();
+    public DbSet<Zwrot> Zwrot => Set<Zwrot>();
+    public DbSet<EtykietaZwrotna> EtykietaZwrotna => Set<EtykietaZwrotna>();
+    public DbSet<RecenzjaSprzetu> RecenzjaSprzetu => Set<RecenzjaSprzetu>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

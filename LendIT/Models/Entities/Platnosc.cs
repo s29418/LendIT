@@ -7,25 +7,25 @@ public class Platnosc
 {
     [Key]
     [Required]
-    private int Id { get; set; }
+    public int Id { get; set; }
 
     [Required]
-    private float Kwota { get; set; }
+    public float Kwota { get; set; }
 
     [Required]
-    private StatusPlatnosci StatusPlatnosci { get; set; }
+    public StatusPlatnosci StatusPlatnosci { get; set; }
 
     [Required]
-    private Klient Klient { get; set; }
+    public Klient Klient { get; set; }
 
     [Required]
-    private int KlientId { get; set; }
+    public int KlientId { get; set; }
 
     [Required]
-    private Wypozyczenie Wypozyczenie { get; set; }
+    public Wypozyczenie Wypozyczenie { get; set; }
 
     [Required]
-    private int WypozyczenieId { get; set; }
+    public int WypozyczenieId { get; set; }
 
     public void PrzetworzPlatnosc(Wypozyczenie wypozyczenie)
     {

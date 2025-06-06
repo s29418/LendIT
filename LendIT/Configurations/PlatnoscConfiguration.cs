@@ -11,7 +11,9 @@ public class PlatnoscConfiguration : IEntityTypeConfiguration<Platnosc>
         builder.HasKey("Id");
 
         builder.Property<float>("Kwota").IsRequired();
-        builder.Property<int>("StatusPlatnosci").IsRequired();
+        builder.Property("StatusPlatnosci")
+            .HasConversion<int>()
+            .IsRequired();
 
         builder.HasOne(typeof(Klient), "Klient")
             .WithMany()
@@ -20,7 +22,9 @@ public class PlatnoscConfiguration : IEntityTypeConfiguration<Platnosc>
 
         builder.HasOne(typeof(Wypozyczenie), "Wypozyczenie")
             .WithOne("Platnosc")
-            .HasForeignKey("WypozyczenieId")
+            .HasForeignKey(typeof(Platnosc), "WypozyczenieId")
             .OnDelete(DeleteBehavior.Cascade);
+
+        
     }
 }

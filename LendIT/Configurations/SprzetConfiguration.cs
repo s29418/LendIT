@@ -15,7 +15,9 @@ public class SprzetConfiguration : IEntityTypeConfiguration<Sprzet>
         builder.Property<decimal>("Cena").IsRequired();
         builder.Property<decimal>("Kaucja").IsRequired();
         builder.Property<string>("Opis").IsRequired();
-        builder.Property<int>("Status").IsRequired(); 
+        builder.Property("Status")
+            .HasConversion<int>()
+            .IsRequired(); 
         
 
         builder.OwnsOne(typeof(Wymiary), "Wymiary", w =>
@@ -42,6 +44,6 @@ public class SprzetConfiguration : IEntityTypeConfiguration<Sprzet>
             .OnDelete(DeleteBehavior.Restrict);
         
         builder.HasMany(typeof(KategoriaSprzetu), "Kategorie")
-            .WithMany();
+            .WithMany("Sprzety");
     }
 }

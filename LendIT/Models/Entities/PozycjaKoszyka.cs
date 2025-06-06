@@ -6,20 +6,20 @@ public class PozycjaKoszyka
 {
     [Key]
     [Required]
-    private int Id { get; set; }
+    public int Id { get; set; }
 
     [Required]
-    private Sprzet Sprzet { get; set; }
+    public Sprzet Sprzet { get; set; }
 
     [Required]
-    private int SprzetId { get; set; }
+    public int SprzetId { get; set; }
 
     [Required]
-    private int Ilosc { get; set; }
+    public int Ilosc { get; set; }
 
     [Required]
-    private Koszyk Koszyk { get; set; }
+    public Koszyk Koszyk { get; set; }
 
     [Required]
-    private int KoszykId { get; set; }
+    public int KoszykId { get; set; }
 }

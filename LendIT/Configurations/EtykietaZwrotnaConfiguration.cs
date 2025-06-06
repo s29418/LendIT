@@ -14,7 +14,7 @@ public class EtykietaZwrotnaConfiguration : IEntityTypeConfiguration<EtykietaZwr
 
         builder.HasOne(typeof(Zwrot), "Zwrot")
             .WithOne("EtykietaZwrotna")
-            .HasForeignKey("ZwrotId")
+            .HasForeignKey(typeof(EtykietaZwrotna), "ZwrotId")
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

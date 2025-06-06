@@ -5,13 +5,17 @@ namespace LendIT.Models.Entities;
 public class Klient : Uzytkownik
 {
     [Required]
-    private string NrTelefonu { get; set; }
+    public string NrTelefonu { get; set; }
 
     [Required]
-    private List<Adres> Adresy { get; set; } = new();
+    public List<Adres> Adresy { get; set; } = new();
 
     [Required]
-    private Koszyk Koszyk { get; set; }
+    public Koszyk Koszyk { get; set; }
+    
+
+    public List<Wypozyczenie> Wypozyczenia { get; set; } = new();
+
 
     public override void ZarzadzajKontem(string[] noweDane)
     {
@@ -53,8 +57,36 @@ public class Klient : Uzytkownik
         throw new NotImplementedException();
     }
 
-    public void StworzWypozyczenieZKoszyka()
+    public void StworzWypozyczenieZKoszyka(DateTime terminOd, DateTime terminDo)
     {
-        throw new NotImplementedException();
+        if (Koszyk == null || !Koszyk.Pozycje.Any())
+            throw new InvalidOperationException("Koszyk jest pusty.");
+
+        var noweWypozyczenie = new Wypozyczenie
+        (
+            dataOd: terminOd,
+            dataDo: terminDo
+        );
+
+        foreach (var pozycja in Koszyk.Pozycje)
+        {
+            var sprzet = pozycja.Sprzet;
+
+            if (!sprzet.SprawdzDostepnosc(terminOd, terminDo))
+                throw new InvalidOperationException($"Sprzęt '{sprzet.Nazwa}' jest niedostępny w wybranym terminie.");
+
+            var pozycjaWyp = new PozycjaWypozyczenia
+            (
+                sprzet,
+                pozycja.Ilosc,
+                noweWypozyczenie
+            );
+
+            noweWypozyczenie.DodajPozycje(pozycjaWyp);
+        }
+
+        Wypozyczenia.Add(noweWypozyczenie);
+        Koszyk.Pozycje.Clear();
     }
+
 }

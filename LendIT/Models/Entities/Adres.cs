@@ -6,23 +6,25 @@ public class Adres
 {
     [Key]
     [Required]
-    private int Id { get; set; }
+    public int Id { get; set; }
 
     [Required]
-    private string Ulica { get; set; }
+    public string Ulica { get; set; }
 
     [Required]
-    private string NumerDomu { get; set; }
+    public string NumerDomu { get; set; }
 
     [Required]
-    private string Miasto { get; set; }
+    public string Miasto { get; set; }
 
     [Required]
-    private string KodPocztowy { get; set; }
+    public string KodPocztowy { get; set; }
 
     [Required]
-    private Klient Klient { get; set; }
+    public Klient Klient { get; set; }
 
     [Required]
-    private int KlientId { get; set; }
+    public int KlientId { get; set; }
+    
+    public List<Zwrot> Zwroty { get; set; } = new();
 }

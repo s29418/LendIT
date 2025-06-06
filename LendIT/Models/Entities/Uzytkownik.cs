@@ -6,19 +6,19 @@ public abstract class Uzytkownik
 {
     [Key]
     [Required]
-    private int Id { get; set; }
+    public int Id { get; set; }
 
     [Required]
-    private string Imie { get; set; }
+    public string Imie { get; set; }
 
     [Required]
-    private string Nazwisko { get; set; }
+    public string Nazwisko { get; set; }
 
     [Required]
-    private string Email { get; set; }
+    public string Email { get; set; }
 
     [Required]
-    private string Haslo { get; set; }
+    public string Haslo { get; set; }
 
     public bool Zaloguj(string email, string haslo)
     {

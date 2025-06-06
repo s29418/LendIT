@@ -8,16 +8,16 @@ public class Wypozyczenie
 {
     [Key]
     [Required]
-    private int Id { get; set; }
+    public int Id { get; set; }
 
     [Required]
-    private DateTime DataWypozyczenia { get; set; }
+    public DateTime DataWypozyczenia { get; set; }
 
     [Required]
-    private StatusWypozyczenia Status { get; set; }
+    public StatusWypozyczenia Status { get; set; }
     
     [NotMapped]
-    private float CalkowityKoszt
+    public float CalkowityKoszt
     {
         get
         {
@@ -26,20 +26,37 @@ public class Wypozyczenie
     }
 
     [Required]
-    private List<PozycjaWypozyczenia> Pozycje { get; set; } = new();
+    public List<PozycjaWypozyczenia> Pozycje { get; set; } = new();
 
     [Required]
-    private Klient Klient { get; set; }
+    public Klient Klient { get; set; }
 
     [Required]
-    private int KlientId { get; set; }
+    public int KlientId { get; set; }
 
     [Required]
-    private Platnosc Platnosc { get; set; }
+    public Platnosc Platnosc { get; set; }
+    
+    [Required]
+    public DateTime DataZakonczenia { get; set; }
 
     [Required]
-    private int PlatnoscId { get; set; }
+    public int PlatnoscId { get; set; }
+    
+    public Wypozyczenie() { }
 
+    public Wypozyczenie(DateTime dataOd, DateTime dataDo)
+    {
+        DataWypozyczenia = dataOd;
+        DataZakonczenia = dataDo;
+        Status = StatusWypozyczenia.Oczekujace;
+    }
+    
+    public void DodajPozycje(PozycjaWypozyczenia pozycja)
+    {
+        Pozycje.Add(pozycja);
+    }
+    
     public void PrzedluzWypozyczenie(DateTime nowaData)
     {
         throw new NotImplementedException();
@@ -49,4 +66,6 @@ public class Wypozyczenie
     {
         throw new NotImplementedException();
     }
+    
+    
 }

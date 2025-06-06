@@ -7,34 +7,36 @@ namespace LendIT.Models.Entities;
 public class Sprzet
 {
     [Required]
-    private int SerialNumber { get; set; }
+    public int SerialNumber { get; set; }
 
     [Required]
-    private string Nazwa { get; set; }
+    public string Nazwa { get; set; }
 
     [Required]
-    private decimal Cena { get; set; }
+    public decimal Cena { get; set; }
 
     [Required]
-    private decimal Kaucja { get; set; }
+    public decimal Kaucja { get; set; }
 
     [Required]
-    private string Opis { get; set; }
+    public string Opis { get; set; }
 
     [Required]
-    private StatusSprzetu Status { get; set; }
+    public StatusSprzetu Status { get; set; }
 
     [Required]
-    private Wymiary Wymiary { get; set; }
+    public Wymiary Wymiary { get; set; }
 
     [Required]
-    private static int LiczbaWszystkichSprzetow { get; set; }
+    public static int LiczbaWszystkichSprzetow { get; set; }
 
-    private List<KategoriaSprzetu> Kategorie { get; set; } = new();
+    public List<KategoriaSprzetu> Kategorie { get; set; } = new();
 
-    private List<ZdjecieSprzetu> Zdjecia { get; set; } = new();
+    public List<ZdjecieSprzetu> Zdjecia { get; set; } = new();
 
-    private List<RecenzjaSprzetu> Recenzje { get; set; } = new();
+    public List<RecenzjaSprzetu> Recenzje { get; set; } = new();
+    
+    public List<PozycjaWypozyczenia> PozycjeWypozyczenia { get; set; } = new();
 
     public Sprzet()
     {
@@ -43,6 +45,21 @@ public class Sprzet
 
     public bool SprawdzDostepnosc(DateTime terminOd, DateTime terminDo)
     {
+        foreach (var pozycja in PozycjeWypozyczenia)
+        {
+            var wypozyczenie = pozycja.Wypozyczenie;
+            
+            if (wypozyczenie.Status == StatusWypozyczenia.Zwrocone ||
+                wypozyczenie.Status == StatusWypozyczenia.Anulowane)
+                continue;
+            
+            bool nakladanie = terminOd < wypozyczenie.DataZakonczenia &&
+                              terminDo > wypozyczenie.DataWypozyczenia;
+
+            if (nakladanie)
+                return false;
+        }
+
         return true;
     }
 
